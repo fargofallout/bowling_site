@@ -1,0 +1,20 @@
+<h4>all bowlers:</h4>
+
+{% if all_bowlers %}
+<ul>
+    {% for each_bowler in all_bowlers %}
+    <li>{{ each_bowler.first_name }} {{ each_bowler.last_name }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>no bowlers available</p>
+{% endif %}
+
+Add a bowler (no option to associate them with a team right now - that comes later):
+<form action="{% url 'bowling:create_bowler' %}" method="post">
+    {% csrf_token %}
+    <input id="first_name" name="first_name" type="text" placeholder="First Name"><br>
+    <input id="last_name" name="last_name" type="text" placeholder="Last Name"><br>
+    <input type="submit" value="Submit">
+</form>
+

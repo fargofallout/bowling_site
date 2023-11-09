@@ -1,0 +1,22 @@
+<h4>all leagues:</h4>
+
+{% if all_leagues %}
+<ul>
+    {% for each_league in all_leagues %}
+    <li>{{ each_league.name }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>no leagues yet available</p>
+{% endif %}
+
+Add a league:
+<form action="{% url 'bowling:create_league' %}" method="post">
+    {% csrf_token %}
+    <input id="name" name="name" type="text" placeholder="League Name"><br>
+    <input id="alley" name="alley" type="text" placeholder="Alley Name"><br>
+    <input id="season" name="season" type="text" placeholder="Season"><br>
+    <input id="day_of_week" name="day_of_week" type="text" placeholder="Day of Week"><br>
+    <input id="players_per_team" name="players_per_team" type="text" placeholder="Players Per Team"><br>
+    <input type="submit" value="Submit">
+</form>

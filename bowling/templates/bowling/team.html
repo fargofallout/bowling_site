@@ -1,0 +1,17 @@
+All teams:<br>
+
+{% if all_teams %}
+
+{% for each_team in all_teams %}
+{{ each_team }}<br>
+{% endfor %}
+
+{% endif %}
+
+<h5>Create a new team</h5>
+<form action="{% url 'bowling:create_team' %}" method="post">
+    {% csrf_token %}
+    <input id="team_name" name="team_name" type="text" placeholder="Team Name"><br>
+    <input type="submit" value="Submit">
+</form>
+
