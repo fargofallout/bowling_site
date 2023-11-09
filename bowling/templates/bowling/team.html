@@ -12,6 +12,7 @@ All teams:<br>
 
 {% endif %}
 
+<br>
 <h5>Create a new team</h5>
 <form action="{% url 'bowling:create_team' %}" method="post">
     {% csrf_token %}

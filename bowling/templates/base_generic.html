@@ -21,10 +21,10 @@
         <div class="col-sm-2">
           {% block sidebar %}
             <ul class="sidebar-nav">
-                this would presumably go into a hamburger menu
+                hamburger menu
               <li><a href="{% url 'bowling:index' %}">Home</a></li>
-              <li><a href="#">All books</a></li>
-              <li><a href="#">All authors</a></li>
+              <li><a href="{% url 'bowling:bowler' %}">Bowler</a></li>
+              <li><a href="{% url 'bowling:team' %}">Team</a></li>
             </ul>
           {% endblock %}
         </div>
