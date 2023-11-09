@@ -1,3 +1,7 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
 <h4>all leagues:</h4>
 
 {% if all_leagues %}
@@ -20,3 +24,6 @@ Add a league:
     <input id="players_per_team" name="players_per_team" type="text" placeholder="Players Per Team"><br>
     <input type="submit" value="Submit">
 </form>
+
+{% endblock %}
+

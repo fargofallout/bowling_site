@@ -12,5 +12,6 @@ urlpatterns = [
         path("create_team", views.create_team, name="create_team"),
         path("league", views.league, name="league"),
         path("create_league", views.create_league, name="create_league"),
+        path("week", views.week, name="week"),
         ]
 

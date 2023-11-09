@@ -1,15 +1,22 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+
 <p>This is the main page, where I sort of have to figure out the flow of this thing.</p>
 
 <a href="{% url 'bowling:bowler' %}">All Bowlers (eventually)</a><br>
 - this goes to a page that lists all bowlers, and lets you add new bowlers<br><br>
 <a href="{% url 'bowling:team' %}">All Teams</a><br>
 - this goes to the teams page, where you can add new teams (and maybe bowlers, too?)<br><br>
-<a href="#">New week</a><br>
+<a href="{% url 'bowling:league' %}">Leagues</a><br>
+- all leagues - I don't think this will be used very much<br><br>
+<a href="{% url 'bowling:week' %}">New week</a><br>
 - this will go to the new week workflow<br><br>
 
 questions:<br>
 - place to add a new league?<br>
 - place to modify/add games? or will that be handled on the bowler page?<br>
 
-
+{% endblock %}
 

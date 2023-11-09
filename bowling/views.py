@@ -57,3 +57,7 @@ def create_league(request):
     return HttpResponseRedirect(reverse("bowling:league"))
 
 
+
+def week(request):
+    return render(request, "bowling/week.html")
+
