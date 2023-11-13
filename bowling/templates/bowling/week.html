@@ -1,9 +1,6 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
-<h5>creating a new week</h5>
-
 first, select the team on the left lane and the team on the right lane<br>
 
 <div class="row">
@@ -17,6 +14,8 @@ first, select the team on the left lane and the team on the right lane<br>
                 <li><a class="dropdown-item" href="#">First team?</a></li>
                 <li><a class="dropdown-item" href="#">Second team</a></li>
                 <li><a class="dropdown-item" href="#">Something else</a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="col-sm-4">
@@ -24,6 +23,7 @@ first, select the team on the left lane and the team on the right lane<br>
     </div>
 </div>
 
+{% load static %}
+<img src="{% static 'bowling/Mike.jpg' %}" alt="dammit">
+
 {% endblock %}
-
-
