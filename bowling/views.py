@@ -30,12 +30,18 @@ def team(request):
     return render(request, "bowling/team.html", teams)
 
 
+# this would make sense to utilize htmx, right? because I don't want to replace the whole page - just part of it
 @require_http_methods(["POST",])
 def create_team(request):
     r = request.POST
+    team_name = r["team_name"]
+    if vm.search_team(team_name):
+        error_message = "That team name already exists. Please use a different name."
+        all_teams = Team.objects.order_by("team_name")
+        teams = {"all_teams": all_teams, "error_message": error_message}
+        return render(request, "bowling/team.html", teams)
     vm.create_team(r["team_name"])
     return HttpResponseRedirect(reverse("bowling:team"))
-
 
 
 def league(request):
