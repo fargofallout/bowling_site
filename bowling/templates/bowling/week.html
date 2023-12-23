@@ -1,26 +1,34 @@
 {% extends "base_generic.html" %}
-    <script type="text/javascript" src="{% static 'bowling/js/popper.min.js' %}"></script>
 
 {% block content %}
 first, select the team on the left lane and the team on the right lane<br>
+selecting a team should either do an htmx call, or a js thing to populate the players from that team
 
 <div class="row">
     <div class="col-sm-4">
-        this is where the left team dropdown would go<br>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Drop me!
+                Left Team
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">First team?</a></li>
-                <li><a class="dropdown-item" href="#">Second team</a></li>
-                <li><a class="dropdown-item" href="#">Something else</a></li>
+                {% for team in all_teams %}
+                <li><a class="dropdown-item" href="#">{{ team.team_name }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
 
     <div class="col-sm-4">
-        and this is the right
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Right Team
+            </button>
+            <ul class="dropdown-menu">
+                {% for team in all_teams %}
+                <li><a class="dropdown-item" href="#">{{ team.team_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
 

@@ -65,5 +65,7 @@ def create_league(request):
 
 
 def week(request):
-    return render(request, "bowling/week.html")
+    all_teams = Team.objects.order_by("team_name")
+    teams = {"all_teams": all_teams}
+    return render(request, "bowling/week.html", teams)
 
