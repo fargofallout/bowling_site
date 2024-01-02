@@ -5,7 +5,6 @@ from .models import Bowler, Team, League
 import bowling.viewmodels as vm
 
 
-# Create your views here.
 def index(request):
     return render(request, "bowling/index.html")
 
@@ -68,4 +67,14 @@ def week(request):
     all_teams = Team.objects.order_by("team_name")
     teams = {"all_teams": all_teams}
     return render(request, "bowling/week.html", teams)
+
+
+def get_bowlers(request, team_id):
+    # print(f"did the id get captured? {team_id}")
+    bowlers_on_team = Bowler.objects.filter(team__id=team_id)
+    bowler_not_on_team = Bowler.objects.exclude(team__id=team_id)
+    print(f"on team: {bowlers_on_team}, not on team: {bowler_not_on_team}")
+    bowlers = {"bowlers_on_team": bowlers_on_team, "bowlers_not_on_team": bowler_not_on_team}
+    print(bowlers)
+    return render(request, "bowling/partial_bowlers.html", bowlers)
 

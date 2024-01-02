@@ -1,0 +1,10 @@
+these are the bowlers on the team
+{% for each_bowler in bowlers_on_team %}
+<li>{{ each_bowler }}</li>
+{% endfor %}
+<br><br>
+
+these are the bowlers not on the team
+{% for each_bowler in bowlers_not_on_team %}
+<li>{{ each_bowler }}</li>
+{% endfor %}

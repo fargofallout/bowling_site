@@ -12,10 +12,11 @@ selecting a team should either do an htmx call, or a js thing to populate the pl
             </button>
             <ul class="dropdown-menu">
                 {% for team in all_teams %}
-                <li><a class="dropdown-item" href="#">{{ team.team_name }}</a></li>
+                <li hx-get="{% url 'bowling:get_bowlers' team.id %}" hx-target="#left_team"><a class="dropdown-item" href="#">{{ team.team_name }}</a></li>
                 {% endfor %}
             </ul>
         </div>
+        <div id="left_team">player names should go here</div>
     </div>
 
     <div class="col-sm-4">
