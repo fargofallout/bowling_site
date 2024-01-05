@@ -5,6 +5,8 @@ from django.db.models.deletion import DO_NOTHING
 class Bowler(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+
+    full_name = models.CharField(max_length=100, null=True)
     
     team = models.ForeignKey("Team", on_delete=models.DO_NOTHING, null=True)
 

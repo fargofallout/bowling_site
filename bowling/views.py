@@ -73,8 +73,8 @@ def get_bowlers(request, team_id):
     # print(f"did the id get captured? {team_id}")
     bowlers_on_team = Bowler.objects.filter(team__id=team_id)
     bowler_not_on_team = Bowler.objects.exclude(team__id=team_id)
-    print(f"on team: {bowlers_on_team}, not on team: {bowler_not_on_team}")
+    # print(f"on team: {bowlers_on_team}, not on team: {bowler_not_on_team}")
     bowlers = {"bowlers_on_team": bowlers_on_team, "bowlers_not_on_team": bowler_not_on_team}
-    print(bowlers)
+    # print(bowlers)
     return render(request, "bowling/partial_bowlers.html", bowlers)
 

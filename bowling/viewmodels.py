@@ -2,7 +2,7 @@ from .models import Bowler, Team, League
 
 
 def create_bowler(first_name: str, last_name: str):
-    new_bowler = Bowler(first_name=first_name, last_name=last_name)
+    new_bowler = Bowler(first_name=first_name, last_name=last_name, full_name=f"{first_name} {last_name}")
     new_bowler.save()
 
 
