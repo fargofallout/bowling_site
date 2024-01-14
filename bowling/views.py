@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse, HttpResponseRedirect, render, reverse
 from django.views.decorators.http import require_http_methods
+# from django.db.models import Q # this is for foreign key searches
 
 from .models import Bowler, Team, League
 import bowling.viewmodels as vm
@@ -69,6 +70,7 @@ def week(request):
     return render(request, "bowling/week.html", teams)
 
 
+# I think this was an htmx request and should be deleted?
 def get_bowlers(request, team_id):
     # print(f"did the id get captured? {team_id}")
     bowlers_on_team = Bowler.objects.filter(team__id=team_id)
@@ -77,4 +79,17 @@ def get_bowlers(request, team_id):
     bowlers = {"bowlers_on_team": bowlers_on_team, "bowlers_not_on_team": bowler_not_on_team}
     # print(bowlers)
     return render(request, "bowling/partial_bowlers.html", bowlers)
+
+
+def bowler_search(request):
+    print(f"I suppose I still need this: {request.POST}")
+    bowler_string = request.POST["search"] # this almost definitely needs to be validated
+    print(f"what the hell: {bowler_string}")
+    bowler = Bowler.objects.filter(full_name__icontains=bowler_string)
+    print(f"not sure what the return is here: {bowler}")
+
+    fake_dict = {"item1": "something", "item2": "something else"}
+
+    return HttpResponse(fake_dict)
+
 

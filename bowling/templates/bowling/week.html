@@ -6,31 +6,47 @@ selecting a team should either do an htmx call, or a js thing to populate the pl
 
 <div class="row">
     <div class="col-sm-4">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Left Team
-            </button>
-            <ul class="dropdown-menu">
-                {% for team in all_teams %}
-                <li hx-get="{% url 'bowling:get_bowlers' team.id %}" hx-target="#left_team"><a class="dropdown-item" href="#">{{ team.team_name }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div id="left_team">player names should go here</div>
+        <table class="table">
+            <tr>
+                <th>Player name</th>
+                <th>Handicap</th>
+            </tr>
+             <tr>
+                <td>
+                    <input type="search" name="search"
+                        placeholder="Search for player"
+                        hx-post="bowler_search"
+                        hx-trigger="input changed delay:500ms, search"
+                        hx-indicator=".htmx-indicator"
+                        hx-target="#search_test"
+                        list="testing">
+                    <div id="search_test">
+                    {% if item1 %}
+                    <datalist id="testing">
+                        <option value="did this work">
+                    </datalist>
+                    <h5>?????</h5>
+                    <script>window.alert("whatever")</script>
+                    {% endif %}
+                    </div>
+                </td>
+                <td>enter player 1 handicap</td>
+            </tr>
+        </table>
     </div>
 
     <div class="col-sm-4">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Right Team
-            </button>
-            <ul class="dropdown-menu">
-                {% for team in all_teams %}
-                <li><a class="dropdown-item" href="#">{{ team.team_name }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+         <table class="table">
+            <tr>
+                <th>Player name</th>
+                <th>Handicap</th>
+            </tr>
+             <tr>
+                <td>search for player 1 here</td>
+                <td>enter player 1 handicap</td>
+            </tr>
+        </table>
+   </div>
 </div>
 
 {% load static %}
