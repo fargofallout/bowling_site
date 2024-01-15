@@ -1,0 +1,7 @@
+{% if bowlers %}
+    {% for each_item in bowlers %}
+    <option value="{{ each_item }}">
+    {% endfor %}
+{% else %}
+<h5>?????</h5>
+{% endif %}

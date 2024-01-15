@@ -82,14 +82,14 @@ def get_bowlers(request, team_id):
 
 
 def bowler_search(request):
-    print(f"I suppose I still need this: {request.POST}")
+    # print(f"I suppose I still need this: {request.POST}")
     bowler_string = request.POST["search"] # this almost definitely needs to be validated
     print(f"what the hell: {bowler_string}")
     bowler = Bowler.objects.filter(full_name__icontains=bowler_string)
-    print(f"not sure what the return is here: {bowler}")
+    bowler_dict = {"bowlers": [x.full_name for x in bowler]}
 
-    fake_dict = {"item1": "something", "item2": "something else"}
+    # fake_dict = {"item1": ["mike vacha", "same something", "mike 2"], "item2": ["another list", "this seems silly"]}
 
-    return HttpResponse(fake_dict)
+    return render(request, "bowling/partials/bowler_list.html", bowler_dict)
 
 

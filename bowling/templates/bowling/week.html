@@ -13,22 +13,17 @@ selecting a team should either do an htmx call, or a js thing to populate the pl
             </tr>
              <tr>
                 <td>
-                    <input type="search" name="search"
+                    <input type="search" name="search" id="search"
                         placeholder="Search for player"
-                        hx-post="bowler_search"
-                        hx-trigger="input changed delay:500ms, search"
+                        hx-post={% url 'bowling:bowler_list' %}
+                        hx-trigger="input changed delay:150ms, search"
                         hx-indicator=".htmx-indicator"
-                        hx-target="#search_test"
-                        list="testing">
-                    <div id="search_test">
-                    {% if item1 %}
-                    <datalist id="testing">
-                        <option value="did this work">
+                        hx-target="#left_1"
+                        list="left_1" >
+                    <datalist id="left_1">
+                        <div id="left_1">
+                       </div>
                     </datalist>
-                    <h5>?????</h5>
-                    <script>window.alert("whatever")</script>
-                    {% endif %}
-                    </div>
                 </td>
                 <td>enter player 1 handicap</td>
             </tr>
