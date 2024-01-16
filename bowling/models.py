@@ -25,7 +25,7 @@ class Team(models.Model):
 
 # I don't think there's a reason to split any of this up or make anything a datetime rather than a string
 class League(models.Model):
-    name = models.CharField(max_length=100)
+    league_name = models.CharField(max_length=100)
     alley = models.CharField(max_length=100)
     season = models.CharField(max_length=20)
     day_of_week = models.CharField(max_length=20)

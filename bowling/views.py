@@ -45,7 +45,7 @@ def create_team(request):
 
 
 def league(request):
-    all_leagues = League.objects.order_by("name")
+    all_leagues = League.objects.order_by("league_name")
     leagues = {"all_leagues": all_leagues}
     return render(request, "bowling/league.html", leagues)
 
@@ -53,21 +53,21 @@ def league(request):
 @require_http_methods(["POST",])
 def create_league(request):
     r = request.POST
-    name = r["name"]
+    league_name = r["name"]
     alley = r["alley"]
     season = r["season"]
     day_of_week = r["day_of_week"]
     players_per_team = r["players_per_team"]
 
-    vm.create_league(name=name, alley=alley, season=season, day_of_week=day_of_week, players_per_team=players_per_team)
+    vm.create_league(league_name=name, alley=alley, season=season, day_of_week=day_of_week, players_per_team=players_per_team)
     return HttpResponseRedirect(reverse("bowling:league"))
 
 
 
 def week(request):
-    all_teams = Team.objects.order_by("team_name")
-    teams = {"all_teams": all_teams}
-    return render(request, "bowling/week.html", teams)
+    all_leagues = League.objects.order_by("league_name")
+    data = {"all_leagues": all_leagues}
+    return render(request, "bowling/week.html", data)
 
 
 # I think this was an htmx request and should be deleted?

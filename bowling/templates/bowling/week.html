@@ -1,6 +1,16 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<br>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select the league</button>
+<div class="dropdown">
+    <ul class="dropdown-menu">
+        {% for each_league in all_leagues %}
+        <li><a class="dropdown-item" href="#">{{ each_league.league_name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<br>
 first, select the team on the left lane and the team on the right lane<br>
 selecting a team should either do an htmx call, or a js thing to populate the players from that team
 
@@ -11,22 +21,25 @@ selecting a team should either do an htmx call, or a js thing to populate the pl
                 <th>Player name</th>
                 <th>Handicap</th>
             </tr>
+             {% for x in "01234" %}
              <tr>
-                <td>
-                    <input type="search" name="search" id="search"
+                 <td>
+                     <input type="search"
+                        name="search"
                         placeholder="Search for player"
                         hx-post={% url 'bowling:bowler_list' %}
-                        hx-trigger="input changed delay:150ms, search"
+                        hx-trigger="input changed delay: 150ms, search"
                         hx-indicator=".htmx-indicator"
-                        hx-target="#left_1"
-                        list="left_1" >
-                    <datalist id="left_1">
-                        <div id="left_1">
-                       </div>
-                    </datalist>
-                </td>
-                <td>enter player 1 handicap</td>
-            </tr>
+                        hx-target="#left_{{ x }}"
+                        list="left_{{ x }}">
+                     <datalist id="left_{{ x }}">
+                         <div id="left_{{ x }}">
+                         </div>
+                     </datalist>
+                 </td>
+                 <td>handicap here</td>
+             </tr>
+             {% endfor %}
         </table>
     </div>
 
@@ -43,6 +56,10 @@ selecting a team should either do an htmx call, or a js thing to populate the pl
         </table>
    </div>
 </div>
+
+{% for x in "012345" %}
+<p>this is sort of silly: {{ x }}</p>
+{% endfor %}
 
 {% load static %}
 <img src="{% static 'bowling/Mike.jpg' %}" alt="dammit">
