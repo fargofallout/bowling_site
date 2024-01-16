@@ -11,11 +11,13 @@
     </ul>
 </div>
 <br>
-first, select the team on the left lane and the team on the right lane<br>
-selecting a team should either do an htmx call, or a js thing to populate the players from that team
+
+Search for players and enter their handicaps.<br>
+If a player hasn't bowled before and doesn't have a handicap, enter 0. You will mark them as a new bowler in the next screen.<br><br>
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-4 border">
+        Left Team<br>
         <table class="table">
             <tr>
                 <th>Player name</th>
@@ -37,29 +39,42 @@ selecting a team should either do an htmx call, or a js thing to populate the pl
                          </div>
                      </datalist>
                  </td>
-                 <td>handicap here</td>
+                 <td><input type="number" placeholder="Handicap"></td>
              </tr>
              {% endfor %}
         </table>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4 border">
+        Right Team<br>
          <table class="table">
             <tr>
                 <th>Player name</th>
                 <th>Handicap</th>
             </tr>
-             <tr>
-                <td>search for player 1 here</td>
-                <td>enter player 1 handicap</td>
+            {% for x in "01234" %}
+            <tr>
+                <td>
+                    <input type="search"
+                           name="search"
+                           placeholder="Search for player"
+                           hx-post={% url 'bowling:bowler_list' %}
+                           hx-trigger="input changed delay: 150ms, search"
+                           hx-indicator=".htmx-indicator"
+                           hx-target="#right_{{ x }}"
+                           list="right_{{ x }}">
+                    <datalist id="right_{{ x }}">
+                        <div id="right_{{ x }}">
+                        </div>
+                    </datalist>
+                </td>
+                <td><input type="number" placeholder="Handicap"></td>
             </tr>
-        </table>
+            {% endfor %}
+       </table>
    </div>
 </div>
 
-{% for x in "012345" %}
-<p>this is sort of silly: {{ x }}</p>
-{% endfor %}
 
 {% load static %}
 <img src="{% static 'bowling/Mike.jpg' %}" alt="dammit">
